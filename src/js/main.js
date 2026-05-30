@@ -1,44 +1,24 @@
-const navbar = document.getElementById('navbar');
-navbar.innerHTML = `<nav class="bem-navbar">
-            <a href="#" class="bem-navbar__brand">Brand</a>
-            <input type="checkbox" id="nav-toggle" class="bem-navbar__checkbox">
-            <label for="nav-toggle" class="bem-navbar__toggle">☰</label>
-            <ul class="bem-navbar__menu">
-                <li class="bem-navbar__item">
-                    <a href="#inicio" class="bem-navbar__link bem-navbar__link--active">Inicial</a>
-                </li>
-                <li class="bem-navbar__item">
-                    <a href="#sobre" class="bem-navbar__link">Sobre</a>
-                </li>
-                <li class="bem-navbar__item">
-                    <a href="#contato" class="bem-navbar__link">Contato</a>
-                </li>
-                 <li class="bem-navbar__item">
-                    <a href="#servicos" class="bem-navbar__link">Serviços</a>
-                </li>
-            </ul>
-        </nav>`
+import navbar from "./componentes/navbar/nav.bar.js";
+import contato from "./componentes/paginas/contato.js";
+import home from "./componentes/paginas/home.js";
+import servicos from "./componentes/paginas/servicos.js";
+import sobre from "./componentes/paginas/sobre.js";
 
 
 const app = document.getElementById('app');
 //app.textContent ='<h1>Olá Mundo!</h1>';
-const home =  `<h1> Esta é página Inicial </h1>
-<p>Bem Vindo ao meu site</p>
-`
-const sobre = `<h1> Esta é página Sobre </h1>
-<p>Este site é um exemplo de SPA usando JavaScript puro</p>
-`
-const contato = `<h1> Esta é página Contato </h1>
-    <p>Entre em contato conosco pelo email:</p>`
 
-const servicos = `<h1> Esta é página Serviços </h1>
-    <p>Nossos serviços incluem:</p>`
-
-
-
+let rota = window.location.hash || '#inicio';
+render();
 window.addEventListener("hashchange", ()=>{
-const rota = window.location.hash;
-switch(rota){
+rota = window.location.hash;
+render();
+
+
+})
+
+function render(){
+    switch(rota){
     case '#inicio':
         app.innerHTML = home;
     break;
@@ -54,5 +34,30 @@ switch(rota){
     default:
         app.innerHTML = `<h1> Página não encontrada </h1>`;
 }
+}
 
-})
+// console.log("contagem regressiva")
+// for(let i=100;i>=0; i-=5){
+    
+//    console.log(i);
+// }
+
+// console.log("contagem progressiva")
+// for(let i=0;i<=100; i++){
+    
+//     console.log(i);
+// }
+
+// let temperatura = 20;
+// let ligado = true;
+// while(ligado){
+//     console.log("A temperatura atual é: " + temperatura);
+//     temperatura += 0.05;
+//     if(temperatura >= 30 && temperatura < 33){
+//         console.log("Enviar email de alerta: Temperatura alta!");
+//     }else if(temperatura > 33){
+//         ligado = false;
+//         console.log("Desligando o sistema para evitar danos");
+//         //break;
+//     }
+// }
