@@ -1,17 +1,19 @@
+// duas formas de exportar mais de uma função de um mesmo arquivo
+//
 function contato(){
 const paginadecontato = `<h1> Esta é a página contato </h1>
-    <form class="bem-form">
+    <form class="bem-form" id="formulario-de-contato">
         <div class="bem-form__group">
-            <label for="assunto" class="bem-bem-form__label">Assunto</label>
-            <input type="text" name="assunto" id="assunto" class="bem-bem-form__Label">
+            <label for="assunto" class="bem-form__label">Assunto</label>
+            <input type="text" name="assunto" id="assunto" class="bem-form__input">
         </div>
         <div class="bem-form__group">    
-            <label for="email" class="bem-bem-form__label">email</label>
-            <input type="email" name="email" id="email class="bem-bem-form__input">
+            <label for="email" class="bem-form__label">Email</label>
+            <input type="email" name="email" id="email class="bem-form__input">
         </div>
         <div class="bem-form__group">
-            <label for="mensagem" class="bem-bem-form__label">Mensagem</label>
-            <textarea class="bem-bem-form__textarea"name="mensagem" id="mensagem" cols="30" rows="10"></textarea>    
+            <label for="mensagem" class="bem-form__label">Mensagem</label>
+            <textarea class="bem-form__textarea" name="mensagem" id="mensagem" cols="30" rows="10"></textarea>    
         </div>
         <button type="submit" class="bem-btn--primary">Enviar</button>
     </form>
@@ -21,4 +23,25 @@ const paginadecontato = `<h1> Esta é a página contato </h1>
  
 return paginadecontato;
 }
-export default contato;
+
+function capturarFormulario(){
+    console.log("capturarFormulario foi chamada")
+    const formulario = document.getElementById('formulario-de-contato');
+    formulario.addEventListener("submit", function(event){
+        event.preventDefault();
+        const lista = document.getElementById('lista_de_contatos');
+        const li = document.createElement('li');
+        // outra forma de acessar os dados do formulário, usando o ID dos inputs
+        // const assunto = document.getElementById('assunto').value;
+        const assunto = event.target[0].value;
+        const email = event.target[1].value;
+        const mensagem = event.target[2].value;
+        //tempplate string
+        li.textContent = `O Assunto é ${asssunto} e o email é${email} e mensagem é${mensagem}`;
+        lista.appendChild(li);
+        event.target[0].value = '';
+        event.target[1].value = '';
+        event.target[2].value = '';
+    })
+}
+export {contato, capturarFormulario};
