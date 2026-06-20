@@ -3,7 +3,8 @@ import {contato, capturarFormulario} from "./componentes/paginas/contato.js";
 import home from "./componentes/paginas/home.js";
 import servicos from "./componentes/paginas/servicos.js";
 import sobre from "./componentes/paginas/sobre.js";
-navbar();
+import itens_menu from "./componentes/menu/itens.js";
+navbar(itens_menu);
 
 const app = document.getElementById('app');
 //app.textContent ='<h1>Olá Mundo!</h1>';

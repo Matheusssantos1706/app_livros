@@ -37,7 +37,7 @@ function capturarFormulario(){
         const email = event.target[1].value;
         const mensagem = event.target[2].value;
         //tempplate string
-        li.textContent = `O Assunto é ${asssunto} e o email é${email} e mensagem é${mensagem}`;
+        li.textContent = `O Assunto é ${assunto} e o email é${email} e mensagem é${mensagem}`;
         lista.appendChild(li);
         event.target[0].value = '';
         event.target[1].value = '';
