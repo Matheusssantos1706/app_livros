@@ -3,7 +3,7 @@ import contato from "./componentes/paginas/contato.js";
 import home from "./componentes/paginas/home.js";
 import servicos from "./componentes/paginas/servicos.js";
 import sobre from "./componentes/paginas/sobre.js";
-
+navbar();
 
 const app = document.getElementById('app');
 //app.textContent ='<h1>Olá Mundo!</h1>';
@@ -20,14 +20,14 @@ render();
 function render(){
     switch(rota){
     case '#inicio':
-        app.innerHTML = home;
-        capturarFormulario();
+        app.innerHTML = home();
+        // capturarFormulario();
     break;
     case '#sobre':
         app.innerHTML = sobre;
     break;
     case '#contato':
-        app.innerHTML = contato;
+        app.innerHTML = contato();
     break;
     case '#servicos':
         app.innerHTML = servicos;
