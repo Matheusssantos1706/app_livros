@@ -1,54 +1,41 @@
 import navbar from "./componentes/navbar/nav.bar.js";
-import {contato, capturarFormulario} from "./componentes/paginas/contato.js";
-import home from "./componentes/paginas/home.js";
-import servicos from "./componentes/paginas/servicos.js";
-import sobre from "./componentes/paginas/sobre.js";
-import itens_menu from "./componentes/menu/itens.js";
-navbar(itens_menu);
+import roteador from "./componentes/rotas/rotas.js";
+navbar(roteador);
 
 const app = document.getElementById('app');
+console.log(roteador)
+const mapaDeRotas= {}
+console.log(mapaDeRotas)
+for(const rota of roteador){
+    mapaDeRotas[rota.url] = rota
+}
+// console.log(mapaDeRotas)
+// console.log(mapaDeRotas['#inicio'])
+// console.log(mapaDeRotas.['#inicio'].pagina)
+// console.log(mapaDeRotas['#inicio'].pagina())
+
 //app.textContent ='<h1>Olá Mundo!</h1>';
 
-let rota = window.location.hash || '#inicio';
+let hash = window.location.hash || '#inicio';
 render();
 window.addEventListener("hashchange", ()=>{
-rota = window.location.hash;
+hash = window.location.hash;
 render();
 
 
 })
-
+const rota404 = { pagina: () => `<div> Página não encontrada 404 </div>` }
 function render(){
-    switch(rota){
-    case '#inicio':
-        app.innerHTML = home();
-        
-    break;
-    case '#sobre':
-        app.innerHTML = sobre;
-    break;
-    case '#contato':
-        app.innerHTML = contato();
-        capturarFormulario();
-    break;
-    case '#servicos':
-        app.innerHTML = servicos;
-    break;
-    default:
-        app.innerHTML = `<h1> Página não encontrada </h1>`;
+    const rotaAtual = mapaDeRotas[hash]|| rota404
+    app.innerHTML = rotaAtual.pagina()
+    if(typeof mapaDeRotas[hash].acao === 'function'){
+        mapaDeRotas[hash].acao()
+    }
 }
-}
-// console.log("contagem regressiva")
-// for(let i=100;i>=0; i-=5){
-    
-//    console.log(i);
-// }
 
-// console.log("contagem progressiva")
-// for(let i=0;i<=100; i++){
-    
-//     console.log(i);
-// }
+
+
+
 
 // let temperatura = 20;
 // let ligado = true;
