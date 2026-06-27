@@ -2,7 +2,7 @@ import {home, servicos, sobre, contato, capturarFormulario } from '../paginas/pa
 // URL cria a ancora ou link
 // LABEL nome da ancora
 // PAGINA é chama a pagina
-// ACAO é evento dentro da
+// ACAO é evento dentro da pagina
 const roteador = [
     {
         url: '#inicio',
